@@ -5,17 +5,17 @@
  * @format
  */
 
-import React from 'react';
+import React, { useRef, useState } from "react";
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
+  Text, TouchableOpacity,
   useColorScheme,
-  View,
-} from 'react-native';
+  View
+} from "react-native";
 
 import {
   Colors,
@@ -24,6 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import RNTextView from "./src/view/RNTextView";
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -61,6 +62,7 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const [count, setCount] = useState(0);
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -76,6 +78,14 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <RNTextView style={{height: 30, width: 100}} text={`${count}`} />
+          <TouchableOpacity onPress={() => {
+            setCount(count + 1);
+            console.log('click');
+            // console.error(count);
+          }}>
+            <Text>Add</Text>
+          </TouchableOpacity>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
