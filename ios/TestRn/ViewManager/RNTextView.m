@@ -23,22 +23,29 @@
 }
 */
 
-- (instancetype)init {
-  if (self = [super init]) {
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
     self.label = [[UILabel alloc] init];
-    
-    self.frame = CGRectMake(0, 0, 100, 30);
+    self.label.textColor = [UIColor blackColor];
+    self.label.font = [UIFont systemFontOfSize:20];
   }
   return self;
 }
+
+- (void)layoutSubviews {
+  [super layoutSubviews];
+  
+  self.label.frame = self.bounds;
+}
+
 
 - (void)setText:(NSString *)text {
 //  _text = text;
   NSLog(@"text: %@", text);
   self.label.text = text;
-  [self.label sizeToFit];
-  CGRect oldFrame = self.frame;
-  self.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, self.label.frame.size.width, self.label.frame.size.height);
+//  [self.label sizeToFit];
+//  CGRect oldFrame = self.frame;
+//  self.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, self.label.frame.size.width, self.label.frame.size.height);
   
   if (self.callback) {
     NSLog(@"self.callback");

@@ -5,7 +5,7 @@
 //  Created by 岳立兴 on 2024/2/26.
 //
 
-#import <React-Core/React/RCTViewManager.h>
+#import <React/RCTViewManager.h>
 //#import "RCTViewManager.h"
 
 NS_ASSUME_NONNULL_BEGIN

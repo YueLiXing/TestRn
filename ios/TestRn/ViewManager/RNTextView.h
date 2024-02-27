@@ -6,11 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <React-Core/React/RCTComponent.h>
+#import <React/RCTComponent.h>
+#import <React/RCTView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RNTextView : UIView
+//@interface RNTextView : UIView
+@interface RNTextView : RCTView
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy, nullable) RCTDirectEventBlock callback;

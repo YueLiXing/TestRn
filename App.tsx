@@ -8,6 +8,7 @@
 import React, { useRef, useState } from "react";
 import type {PropsWithChildren} from 'react';
 import {
+  NativeModules,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -25,6 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import RNTextView from "./src/view/RNTextView";
+import { Camera, CameraDevice, useCameraDevice, useCodeScanner } from "react-native-vision-camera";
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -63,7 +65,15 @@ function App(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   const [count, setCount] = useState(0);
+  const device = useCameraDevice('back') as CameraDevice;
+  const codeScanner = useCodeScanner({
+    codeTypes: ['qr', 'ean-13'],
+    onCodeScanned: (codes) => {
+      console.log(`Scanned ${codes.length} codes!`);
+    },
+  });
 
+  // return <Camera {...props} codeScanner={codeScanner} />
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -78,14 +88,33 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <RNTextView style={{height: 30, width: 100}} text={`${count}`} />
-          <TouchableOpacity onPress={() => {
-            setCount(count + 1);
-            console.log('click');
-            // console.error(count);
-          }}>
+          <View style={{height: 100, width: 100, backgroundColor: 'red'}}>
+            <RNTextView style={[StyleSheet.absoluteFill, {backgroundColor: 'green'}]} text={`${count}`} />
+          </View>
+          <TouchableOpacity
+            style={{padding: 30}}
+            onPress={async () => {
+              setCount(count + 1);
+              console.log('click');
+            }}>
             <Text>Add</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={{padding: 30}}
+            onPress={async () => {
+              const result = await NativeModules.RNTextView.clean();
+              console.log(`result: ${result}`);
+            }}>
+            <Text>Result</Text>
+          </TouchableOpacity>
+          <View style={{width: '100%', height: 300}}>
+            <Camera
+              style={StyleSheet.absoluteFill}
+              device={device}
+              isActive={true}
+              codeScanner={codeScanner}
+            />
+          </View>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.

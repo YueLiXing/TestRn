@@ -6,30 +6,34 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <React-Core/React/RCTUIManager.h>
+#import <React/RCTUIManager.h>
 #import "RNTextViewViewManager.h"
 #import "RNTextView.h"
+
+//@interface RCT_EXTERN_MODULE(RNTextViewViewManager, RCTViewManager)
+@interface RNTextViewViewManager()
+
+@end
 
 @implementation RNTextViewViewManager
 
 RCT_EXPORT_MODULE(RNTextView)
 
-//- (UIView *)view {
-//  return [UILabel alloc]
-//}
+//RCT_EXPORT_VIEW_PROPERTY(callback, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(text, NSString)
+RCT_EXPORT_VIEW_PROPERTY(callback, RCTDirectEventBlock)
+//RCT_EXPORT_VIEW_PROPERTY(onFastImageLoadStart, RCTDirectEventBlock)
 
-- (UIView *)view {
+- (RNTextView *)view {
   RNTextView *label = [[RNTextView alloc] init];
+  label.backgroundColor = UIColor.orangeColor;
   return label;
 }
 
-- (void)asdasd {
-//  [self.bridge.uiManager viewForReactTag:@1];
+RCT_EXPORT_METHOD(clean:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
+{
+    resolve(@"NULL");
 }
-
-
-RCT_EXPORT_VIEW_PROPERTY(text, NSString)
-RCT_EXPORT_VIEW_PROPERTY(callback, RCTDirectEventBlock)
 
 @end
 
