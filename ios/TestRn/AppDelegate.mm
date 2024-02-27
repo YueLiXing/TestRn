@@ -10,6 +10,10 @@
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
+  
+  [NSTimer scheduledTimerWithTimeInterval:2.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"noti.rntextview.test" object:nil];
+  }];
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }

@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-TestRn-TestRnTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-TestRn-TestRnTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		CD303F6A2B8DC826003E9D48 /* LDFastImageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD303F682B8DC826003E9D48 /* LDFastImageViewManager.m */; };
+		CD303F6D2B8DC9E6003E9D48 /* LDFastImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD303F6C2B8DC9E6003E9D48 /* LDFastImageView.m */; };
 		CDE662072B8C7989005D0DE3 /* RNTextViewViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE662062B8C7989005D0DE3 /* RNTextViewViewManager.m */; };
 		CDE6620A2B8C7DA8005D0DE3 /* RNTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE662092B8C7DA8005D0DE3 /* RNTextView.m */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,10 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-TestRn.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestRn.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TestRn/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-TestRn-TestRnTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestRn-TestRnTests.release.xcconfig"; path = "Target Support Files/Pods-TestRn-TestRnTests/Pods-TestRn-TestRnTests.release.xcconfig"; sourceTree = "<group>"; };
+		CD303F682B8DC826003E9D48 /* LDFastImageViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDFastImageViewManager.m; sourceTree = "<group>"; };
+		CD303F692B8DC826003E9D48 /* LDFastImageViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDFastImageViewManager.h; sourceTree = "<group>"; };
+		CD303F6B2B8DC9E6003E9D48 /* LDFastImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDFastImageView.h; sourceTree = "<group>"; };
+		CD303F6C2B8DC9E6003E9D48 /* LDFastImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDFastImageView.m; sourceTree = "<group>"; };
 		CDE662052B8C7989005D0DE3 /* RNTextViewViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTextViewViewManager.h; sourceTree = "<group>"; };
 		CDE662062B8C7989005D0DE3 /* RNTextViewViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTextViewViewManager.m; sourceTree = "<group>"; };
 		CDE662082B8C7DA8005D0DE3 /* RNTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTextView.h; sourceTree = "<group>"; };
@@ -158,6 +164,10 @@
 		CDE662042B8C78BD005D0DE3 /* ViewManager */ = {
 			isa = PBXGroup;
 			children = (
+				CD303F6B2B8DC9E6003E9D48 /* LDFastImageView.h */,
+				CD303F6C2B8DC9E6003E9D48 /* LDFastImageView.m */,
+				CD303F692B8DC826003E9D48 /* LDFastImageViewManager.h */,
+				CD303F682B8DC826003E9D48 /* LDFastImageViewManager.m */,
 				CDE662052B8C7989005D0DE3 /* RNTextViewViewManager.h */,
 				CDE662062B8C7989005D0DE3 /* RNTextViewViewManager.m */,
 				CDE662082B8C7DA8005D0DE3 /* RNTextView.h */,
@@ -431,9 +441,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD303F6A2B8DC826003E9D48 /* LDFastImageViewManager.m in Sources */,
 				CDE662072B8C7989005D0DE3 /* RNTextViewViewManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				CD303F6D2B8DC9E6003E9D48 /* LDFastImageView.m in Sources */,
 				CDE6620A2B8C7DA8005D0DE3 /* RNTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

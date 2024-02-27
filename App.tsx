@@ -27,6 +27,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import RNTextView from "./src/view/RNTextView";
 import { Camera, CameraDevice, useCameraDevice, useCodeScanner } from "react-native-vision-camera";
+import { LDFastImageView } from "./src/view/LDFastImageView";
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -91,6 +92,7 @@ function App(): JSX.Element {
           <View style={{height: 100, width: 100, backgroundColor: 'red'}}>
             <RNTextView style={[StyleSheet.absoluteFill, {backgroundColor: 'green'}]} text={`${count}`} />
           </View>
+          <LDFastImageView style={{height: 100, width: 100}} />
           <TouchableOpacity
             style={{padding: 30}}
             onPress={async () => {

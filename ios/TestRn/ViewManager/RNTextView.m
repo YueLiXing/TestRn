@@ -15,19 +15,18 @@
 
 @implementation RNTextView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     self.label = [[UILabel alloc] init];
     self.label.textColor = [UIColor blackColor];
     self.label.font = [UIFont systemFontOfSize:20];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"noti.rntextview.test" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull notification) {
+      if (self.callback) {
+        self.callback(@{@"aa": @123123});
+        NSLog(@"RNTextView.callback");
+      }
+    }];
   }
   return self;
 }
@@ -47,16 +46,17 @@
 //  CGRect oldFrame = self.frame;
 //  self.frame = CGRectMake(oldFrame.origin.x, oldFrame.origin.y, self.label.frame.size.width, self.label.frame.size.height);
   
-  if (self.callback) {
-    NSLog(@"self.callback");
-    self.callback(@{@"aa": @123123});
-  }
+  
 }
 
 - (void)setCallback:(RCTDirectEventBlock)callback {
   _callback = callback;
   
-  callback(@{@"111":@"222"});
+//  callback(@{@"111":@"222"});
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
