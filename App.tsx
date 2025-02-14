@@ -1,13 +1,14 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppHome from './src/home/AppHome';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SimpleAnimation from './src/animate/SimpleAnimation';
 import NestedAnimation from "./src/animate/NestedAnimation";
+import ContextPage from "./src/context/ContextPage.tsx";
 
 function HomeScreen() {
   const navgation = useNavigation();
@@ -35,6 +36,12 @@ function HomeScreen() {
         }}>
         <Text>Open NestedAnimation</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          onClickOpenAppHome('ContextPage');
+        }}>
+        <Text>Open ContextPage</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -48,6 +55,7 @@ function RootStack() {
       <Stack.Screen name="AppHome" component={AppHome} />
       <Stack.Screen name="SimpleAnimation" component={SimpleAnimation} />
       <Stack.Screen name="NestedAnimation" component={NestedAnimation} />
+      <Stack.Screen name="ContextPage" component={ContextPage} />
     </Stack.Navigator>
   );
 }
