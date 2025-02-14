@@ -1,5 +1,7 @@
-import React, {createContext, useCallback, useContext, useState} from "react";
-import {Text, TouchableOpacity, View} from "react-native";
+import React, {createContext, useCallback, useContext, useState} from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Route} from "@react-navigation/native";
 
 const DetailContext = createContext({
   count: '',
@@ -7,22 +9,29 @@ const DetailContext = createContext({
   setCount: (count:string) => {},
 });
 
-function ContextPage() {
+type ContextPageRouteParam = {
+  name: string;
+}
+
+function ContextPage(props: {route: Route<string,ContextPageRouteParam> }) {
+  console.log('param', props, props.route.params);
   const [count,setCount] = useState('0');
   const onLickAdd = useCallback(() => {
     setCount(`${parseInt(count) + 1}`);
   }, [count]);
   return (
     <DetailContext.Provider value={{count, setCount}}>
-      <View>
-        <Text>{count}</Text>
-      </View>
-      <RedBtn/>
-      <TouchableOpacity onPress={onLickAdd}>
-        <Text>Add</Text>
-      </TouchableOpacity>
+      <SafeAreaView edges={['bottom']}>
+        <View>
+          <Text>{count}</Text>
+        </View>
+        <RedBtn/>
+        <TouchableOpacity onPress={onLickAdd}>
+          <Text>Add</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
     </DetailContext.Provider>
-  )
+  );
 }
 
 function RedBtn() {
@@ -34,7 +43,7 @@ function RedBtn() {
         <Text>Add2</Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 export default ContextPage;
