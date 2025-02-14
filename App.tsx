@@ -1,159 +1,63 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// In App.js in a new project
 
-import React, { useRef, useState } from "react";
-import type {PropsWithChildren} from 'react';
-import {
-  NativeModules,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text, TouchableOpacity,
-  useColorScheme,
-  View
-} from "react-native";
+import * as React from 'react';
+import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AppHome from './src/home/AppHome';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import SimpleAnimation from './src/animate/SimpleAnimation';
+import NestedAnimation from "./src/animate/NestedAnimation";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import RNTextView from "./src/view/RNTextView";
-import { Camera, CameraDevice, useCameraDevice, useCodeScanner } from "react-native-vision-camera";
-import { LDFastImageView } from "./src/view/LDFastImageView";
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function HomeScreen() {
+  const navgation = useNavigation();
+  const onClickOpenAppHome = (name: string) => {
+    navgation.navigate(name);
+  };
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+      <TouchableOpacity
+        onPress={() => {
+          onClickOpenAppHome('AppHome');
+        }}>
+        <Text>Open App Home</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          onClickOpenAppHome('SimpleAnimation');
+        }}>
+        <Text>Open SimpleAnimation</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          onClickOpenAppHome('NestedAnimation');
+        }}>
+        <Text>Open NestedAnimation</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const Stack = createNativeStackNavigator();
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-  const [count, setCount] = useState(0);
-  const device = useCameraDevice('back') as CameraDevice;
-  const codeScanner = useCodeScanner({
-    codeTypes: ['qr', 'ean-13'],
-    onCodeScanned: (codes) => {
-      console.log(`Scanned ${codes.length} codes!`);
-    },
-  });
-
-  // return <Camera {...props} codeScanner={codeScanner} />
+function RootStack() {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <View style={{height: 100, width: 100, backgroundColor: 'red'}}>
-            <RNTextView style={[StyleSheet.absoluteFill, {backgroundColor: 'green'}]} text={`${count}`} />
-          </View>
-          <LDFastImageView style={{height: 100, width: 100}} />
-          <TouchableOpacity
-            style={{padding: 30}}
-            onPress={async () => {
-              setCount(count + 1);
-              console.log('click');
-            }}>
-            <Text>Add</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{padding: 30}}
-            onPress={async () => {
-              const result = await NativeModules.RNTextView.clean();
-              console.log(`result: ${result}`);
-            }}>
-            <Text>Result</Text>
-          </TouchableOpacity>
-          <View style={{width: '100%', height: 300}}>
-            <Camera
-              style={StyleSheet.absoluteFill}
-              device={device}
-              isActive={true}
-              codeScanner={codeScanner}
-            />
-          </View>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="AppHome" component={AppHome} />
+      <Stack.Screen name="SimpleAnimation" component={SimpleAnimation} />
+      <Stack.Screen name="NestedAnimation" component={NestedAnimation} />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+}

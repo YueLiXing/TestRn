@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LDFastImageView : UIView
 
+@property (nonatomic, copy) NSString *viewManagerTag;
 @property (nonatomic, copy) NSString *uri;
-@property (nonatomic, copy) RCTDirectEventBlock onFastImageLoad;
+@property (nonatomic, copy) RCTDirectEventBlock onCallback;
 
 @end
 

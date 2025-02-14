@@ -7,14 +7,16 @@
 
 @implementation LDFastImageViewManager
 
-RCT_EXPORT_MODULE(LDFastImageView)
+RCT_EXPORT_MODULE(CloseliCamera)
 
 - (LDFastImageView*)view {
-  return [[LDFastImageView alloc] init];
+  LDFastImageView *temp = [[LDFastImageView alloc] init];
+  temp.viewManagerTag = @"LDFastImageViewManager";
+  return temp;
 }
 
 RCT_EXPORT_VIEW_PROPERTY(uri, NSString)
-RCT_EXPORT_VIEW_PROPERTY(onFastImageLoad, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onCallback, RCTDirectEventBlock)
 
 
 @end

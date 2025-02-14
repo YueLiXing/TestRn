@@ -12,9 +12,9 @@
 - (instancetype)initWithFrame:(CGRect)frame {
   if (self = [super initWithFrame:frame]) {
     [[NSNotificationCenter defaultCenter] addObserverForName:@"noti.rntextview.test" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull notification) {
-      if (self.onFastImageLoad) {
-        self.onFastImageLoad(@{@"from": @"LDFastImageView"});
-        NSLog(@"LDFastImageView.callback");
+      if (self.onCallback) {
+        self.onCallback(@{@"from": @"LDFastImageView"});
+        NSLog(@"LDFastImageView.onCallback %@", self.viewManagerTag);
       }
     }];
   }
@@ -24,5 +24,6 @@
 - (void)setUri:(NSString *)uri {
   _uri = uri;
 }
+
 
 @end
