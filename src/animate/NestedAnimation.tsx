@@ -56,13 +56,9 @@ const NestedAnimation = () => {
           styles.box,
           {
             opacity: fadeAnim,
-            transform: [
-              { scale: scaleAnim },
-              { translateY: moveAnim },
-            ],
+            transform: [{ scale: scaleAnim }, { translateY: moveAnim }],
           },
-        ]}
-      >
+        ]}>
         <Text style={styles.text}>Animated Box</Text>
       </Animated.View>
 

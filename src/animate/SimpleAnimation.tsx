@@ -56,8 +56,7 @@ const SimpleAnimation = () => {
             opacity: fadeAnim, // 绑定透明度
             transform: [{ translateY: moveAnim }], // 绑定位置
           },
-        ]}
-      >
+        ]}>
         <Text style={styles.text}>Hello, Animation!</Text>
       </Animated.View>
 
