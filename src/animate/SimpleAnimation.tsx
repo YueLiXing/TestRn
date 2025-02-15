@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Animated, View, Text, StyleSheet, Button } from 'react-native';
 
 const SimpleAnimation = () => {
